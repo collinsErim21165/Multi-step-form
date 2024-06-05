@@ -99,9 +99,9 @@ function App() {
 
   
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-200 h-screen overflow-y-scroll md:overflow-y-auto">
+    <div >
       {submitted ? ( //render Congratulations page if submitted
-        <div>
+        <div className="flex flex-col items-center justify-center bg-gray-200 h-screen overflow-y-scroll md:overflow-y-auto">
            <Paragraph className=''/>
           <div className='md:w-[550px] w-[360px] md:h-[370px] h-[400px] bg-white rounded-xl shadow-lg flex flex-col items-center justify-center'>
           <IoIosCheckmarkCircle  size={70}  className='text-orange-600'/>
@@ -114,7 +114,7 @@ function App() {
         </div>
       ) : (
 
-        <form  onSubmit={handleSubmit} >
+        <form  onSubmit={handleSubmit} className="flex flex-col items-center justify-center bg-gray-200 h-screen overflow-y-scroll md:overflow-y-auto">
           <Paragraph className=''/>
 
         {step === 1 && (
