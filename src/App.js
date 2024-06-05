@@ -114,7 +114,7 @@ function App() {
         </div>
       ) : (
 
-        <form  onSubmit={handleSubmit} className={`flex flex-col items-center justify-center bg-gray-200  overflow-y-scroll md:overflow-y-auto h-screen ${step === 4 ? 'h-[115vh]':''}`}>
+        <form  onSubmit={handleSubmit} className={`flex flex-col items-center justify-center bg-gray-200  overflow-y-scroll md:overflow-y-auto h-screen ${step === 4 ? 'md:h-screen h-[120vh]':''}`}>
           <Paragraph className=''/>
 
         {step === 1 && (
