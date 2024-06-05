@@ -114,7 +114,7 @@ function App() {
         </div>
       ) : (
 
-        <form  onSubmit={handleSubmit} className="flex flex-col items-center justify-center bg-gray-200 h-screen overflow-y-scroll md:overflow-y-auto">
+        <form  onSubmit={handleSubmit} className={`flex flex-col items-center justify-center bg-gray-200  overflow-y-scroll md:overflow-y-auto h-screen ${step === 4 ? 'h-[115vh]':''}`}>
           <Paragraph className=''/>
 
         {step === 1 && (
@@ -179,12 +179,12 @@ function App() {
              <div className='grid grid-cols-2 gap-4 mb-4 '>
                {[ 
                  { option: 'Beginner', icon: <PiFlowerTulipThin className='bg-orange-600 text-white rounded-full h-5 w-5 px-1' /> },
-                 { option: 'Intermediate', icon: <FaRegCompass className='bg-orange-600 text-white rounded-full h-5 w-5 px-1' />},
+                 { option: 'Intermediate', icon: <FaRegCompass className='bg-orange-600 text-white  md:h-5 h-6 md:w-5 w-6 px-[4px] rounded-full' />},
                  { option: 'Advanced', icon: <IoRocket className='bg-orange-600 text-white rounded-full h-5 w-5 px-1'/> },
                  { option: 'Expert', icon: <IoTrophyOutline className='bg-orange-600 text-white rounded-full h-5 w-5 px-1' /> }
                  
                ].map(({ option, icon }) => (
-                <button key={option} type='button' onClick={() => handleOptionSelect(option)} className={`px-4 py-2 m-2 rounded-xl flex items-center hover:border-orange-600 gap-3 ${activeButton === option ? 'border-4 border-orange-600' : 'border'}`}>
+                <button key={option} type='button' onClick={() => handleOptionSelect(option)} className={`px-4 py-2 m-1 rounded-xl flex items-center hover:border-orange-600 gap-3 ${activeButton === option ? 'border-4 border-orange-600' : 'border'}`}>
                   {icon}
                   <span>{option}</span>
                 </button>
@@ -224,7 +224,7 @@ function App() {
                    { option: 'AngularJs' },
                    { option: 'Vue.js' }
                 ].map(({option}) => (
-                  <button key={option} type='button' onClick={() => handleOptionSelectedPage3(option)} className={`px-4 py-2 rounded-xl flex items-center ${activeButtonPage3 === option ? 'border-4 border-orange-600':'border'}`}>
+                  <button key={option} type='button' onClick={() => handleOptionSelectedPage3(option)} className={`px-3 py-2 rounded-xl flex items-center ${activeButtonPage3 === option ? 'border-4 border-orange-600':'border'}`}>
                     <input type="checkbox" checked={activeButtonPage3 === option} onChange={() => handleOptionSelectedPage3(option)} className='mr-2 appearance-none w-4 h-4 border border-black checked:bg-orange-600 checked:border-transparent rounded-lg  '/>
                     <span>{option}</span>
                   </button>
@@ -241,7 +241,7 @@ function App() {
         )}
 
         {step === 4 &&(
-           <div className='md:w-[680px] w-[350px] md:h-[370px] h-[680px] bg-white rounded-xl shadow-lg  '>
+           <div className='md:w-[680px] w-[350px] md:h-[370px] h-[680px] bg-white rounded-xl shadow-lg  page-four-mobile'>
              <div className='flex flex-row items-center justify-between gap-3 pl-5 pr-5 pt-5'>
                <p className='text-white bg-orange-600 h-6 w-6 rounded-full text-center'>1</p>
                <div className='h-1 md:w-32 w-14 bg-orange-600 rounded' ></div>
