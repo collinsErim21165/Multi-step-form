@@ -6,6 +6,8 @@ import { IoRocket } from "react-icons/io5";
 import { IoTrophyOutline } from "react-icons/io5";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import  partyCelebrationIcon  from './icons/party-popper.svg';
+import { db } from './firebase';
+import { collection, addDoc } from 'firebase/firestore';
 // import axios from 'axios';
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
   const [activeButtonPage3, setActiveButtonPage3] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  // const usersCollectionRef = collection(db, "Datas");
+
 
   const handleNext = () => {
     if (isFormFilled(step)) {
@@ -69,34 +73,40 @@ function App() {
         return formData.selectedOptionPage3
       default:
         return true;
-
-    }
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await
-      fetch('https://formspree.io/f/xayrgaqj', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-      if (response.ok) {
-        setSubmitted(true);
-      }else {
-        const errorData = await
-        response.json();
-        alert(`Submission failed: ${errorData.message}`)
-      }
-    } catch (error) {
-      alert(`An error occured: ${error.message}`)
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      await addDoc(collection(db, "Datas"), formData);
+      // await addDoc( usersCollectionRef(db, "formData"), formData);
+      // await addDoc(usersCollectionRef, {name: formData.name, Email: formData.email, phone: formData.phone, github:  formData.github, selectedOption:  formData.selectedOption, selectedOptionPage3: formData.selectedOptionPage3})
+
+      const response = await
+         fetch('https://formspree.io/f/xayrgaqj',{
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(formData)
+         });
+         if (response.ok) {
+          // await addDoc( usersCollectionRef(db, "formData"), formData);
+          setSubmitted(true);
+          // alert('Form submitted successfully to your email!')
+         }else {
+          alert('failed to send email.');
+         }
+       } catch (e) {
+        console.error('Error adding document:', e);
+       }
+
+    }
+
+
+  
   
   return (
     <div >
